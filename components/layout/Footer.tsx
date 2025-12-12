@@ -28,7 +28,16 @@ export function Footer() {
                     {/* Brand */}
                     <div className="space-y-4">
                         <Link href="/" className="inline-block">
-                            <h3 className="font-serif text-3xl font-bold text-gold">AGNIVIE</h3>
+                            <div className="flex items-center gap-3">
+                                <div className="relative h-14 w-14 rounded-full overflow-hidden border border-gold/40 shadow-sm bg-white">
+                                    <img
+                                        src="/logo.jpg"
+                                        alt="Agnivie Logo"
+                                        className="h-full w-full object-cover"
+                                    />
+                                </div>
+                                <h3 className="font-serif text-3xl font-bold text-gold">AGNIVIE</h3>
+                            </div>
                         </Link>
                         <p className="text-white/60 text-sm leading-relaxed">
                             Everyday fashion with an elegant touch.

@@ -27,11 +27,14 @@ export function Navbar() {
                 <div className="flex h-20 items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        {/* Optional: Add Yellow Circle Logo SVG here if we had one, for now text is fine */}
-                        <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center mr-1">
-                            <span className="font-serif text-black font-bold text-lg">A</span>
+                        <div className="relative h-12 w-12 rounded-full overflow-hidden border border-gold/20 shadow-sm">
+                            <img
+                                src="/logo.jpg"
+                                alt="Agnivie Logo"
+                                className="h-full w-full object-cover"
+                            />
                         </div>
-                        <span className="font-serif text-3xl font-bold tracking-tighter text-gold">
+                        <span className="font-serif text-2xl font-bold tracking-tighter text-gold hidden sm:block">
                             AGNIVIE
                         </span>
                     </Link>
