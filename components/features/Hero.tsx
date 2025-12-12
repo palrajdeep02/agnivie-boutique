@@ -31,14 +31,14 @@ export function Hero() {
                         Timeless Styles • Soft Fabrics • Affordable
                     </p>
 
-                    <div className="pt-8 gap-4 flex justify-center">
-                        <Link href="/products">
-                            <Button size="lg" className="min-w-[160px] bg-gold text-black hover:bg-white hover:text-black border-none">
+                    <div className="pt-8 flex flex-col md:flex-row gap-4 justify-center items-center w-full px-4 md:px-0">
+                        <Link href="/products" className="w-full md:w-auto">
+                            <Button size="lg" className="w-full md:w-auto min-w-[160px] bg-gold text-black hover:bg-white hover:text-black border-none">
                                 Shop Collection
                             </Button>
                         </Link>
-                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-                            <Button variant="outline" size="lg" className="min-w-[160px] text-white border-white hover:bg-white/10">
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
+                            <Button variant="outline" size="lg" className="w-full md:w-auto min-w-[160px] text-white border-white hover:bg-white/10">
                                 DM to Order 📩
                             </Button>
                         </a>
