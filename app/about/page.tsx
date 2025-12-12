@@ -29,10 +29,10 @@ export default function AboutPage() {
                     </section>
 
                     {/* Image Placeholder */}
-                    <div className="aspect-video bg-gray-200 w-full relative overflow-hidden">
+                    <div className="aspect-video bg-gray-200 w-full relative overflow-hidden rounded-lg shadow-xl">
                         <div
-                            className="absolute inset-0 bg-cover bg-center"
-                            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1550614000-4b9519e07d0a?q=80&w=2000&auto=format&fit=crop")' }}
+                            className="absolute inset-0 bg-cover bg-center hover:scale-105 transition-transform duration-700"
+                            style={{ backgroundImage: 'url("/images/about-story.png")' }}
                         />
                     </div>
 
