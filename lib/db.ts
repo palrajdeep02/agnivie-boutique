@@ -262,3 +262,19 @@ export const uploadImage = async (file: File, path: string) => {
         throw error;
     }
 };
+
+// --- DASHBOARD STATS ---
+export const getDashboardStats = async () => {
+    try {
+        const productsSnap = await getDocs(collection(db, "products"));
+        const categoriesSnap = await getDocs(collection(db, "categories"));
+
+        return {
+            totalProducts: productsSnap.size,
+            activeCategories: categoriesSnap.size
+        };
+    } catch (error) {
+        console.error("Error fetching stats:", error);
+        return { totalProducts: 0, activeCategories: 0 };
+    }
+};
