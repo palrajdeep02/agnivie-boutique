@@ -19,7 +19,7 @@ export function ProductCard({ product }: ProductCardProps) {
     }).format(product.price);
 
     const whatsappMessage = `Hi, I want to order Product Code: ${product.code}`;
-    const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappLink = `https://wa.me/918961806531?text=${encodeURIComponent(whatsappMessage)}`;
 
     return (
         <Card className="group relative border-none shadow-none bg-white overflow-hidden">

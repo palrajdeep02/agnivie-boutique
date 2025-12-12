@@ -60,7 +60,7 @@ export default function ContactPage() {
                         <div>
                             <h2 className="text-2xl font-serif text-secondary mb-6">Order via WhatsApp</h2>
                             <p className="text-secondary/60 mb-4">Have a specific requirement or want to customize? Chat with us directly.</p>
-                            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/918961806531" target="_blank" rel="noopener noreferrer">
                                 <Button variant="whatsapp" size="lg">Chat on WhatsApp</Button>
                             </a>
                         </div>
