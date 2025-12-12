@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Product } from "@/lib/db";
+import { Product, logInteraction } from "@/lib/db";
 import { ProductGallery } from "./ProductGallery";
 import { Button } from "@/components/ui/Button";
 import { Phone, MessageCircle, Share2, ShieldCheck } from "lucide-react";
@@ -69,12 +69,22 @@ export function ProductDetail({ product }: ProductDetailProps) {
                     </div>
 
                     <div className="space-y-4">
-                        <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="block w-full">
+                        <a
+                            href={whatsappLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full"
+                            onClick={() => logInteraction('whatsapp')}
+                        >
                             <Button variant="whatsapp" size="lg" className="w-full gap-2 text-lg h-14">
                                 <MessageCircle className="h-5 w-5" /> Order on WhatsApp
                             </Button>
                         </a>
-                        <a href="tel:+918961806531" className="block w-full">
+                        <a
+                            href="tel:+918961806531"
+                            className="block w-full"
+                            onClick={() => logInteraction('call')}
+                        >
                             <Button variant="outline" size="lg" className="w-full gap-2 text-lg h-14 border-secondary text-secondary hover:bg-secondary hover:text-white">
                                 <Phone className="h-5 w-5" /> Call for Enquiry
                             </Button>

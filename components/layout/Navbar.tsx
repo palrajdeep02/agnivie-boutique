@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ShoppingBag } from "lucide-react";
+import { logInteraction } from "@/lib/db";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
@@ -50,7 +51,7 @@ export function Navbar() {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
-                        <a href="tel:+918961806531">
+                        <a href="tel:+918961806531" onClick={() => logInteraction('call')}>
                             <Button variant="outline" size="sm" className="hidden lg:flex">
                                 Call Now
                             </Button>

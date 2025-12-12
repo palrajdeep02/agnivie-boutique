@@ -49,78 +49,122 @@ export default function AdminProductsPage() {
     }
 
     return (
-        <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <h1 className="text-2xl font-serif font-medium text-secondary">Products</h1>
+        <div className="space-y-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-3xl font-serif font-medium text-secondary">Products</h1>
+                    <p className="text-secondary/60 font-light mt-1">Manage your boutique collection.</p>
+                </div>
                 <Link href="/admin/products/new">
-                    <Button className="gap-2">
-                        <Plus className="h-4 w-4" /> Add Product
+                    <Button className="bg-secondary hover:bg-black text-white gap-2 w-full md:w-auto shadow-lg shadow-gold/10">
+                        <Plus className="h-4 w-4" /> Add New Item
                     </Button>
                 </Link>
             </div>
 
-            <div className="bg-white border border-gray-100 shadow-sm overflow-hidden">
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm">
-                        <thead className="bg-gray-50 text-secondary/70 border-b border-gray-100">
-                            <tr>
-                                <th className="px-6 py-4 font-medium">Image</th>
-                                <th className="px-6 py-4 font-medium">Name</th>
-                                <th className="px-6 py-4 font-medium">Code</th>
-                                <th className="px-6 py-4 font-medium">Price</th>
-                                <th className="px-6 py-4 font-medium">Category</th>
-                                <th className="px-6 py-4 font-medium text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            {products.length === 0 ? (
-                                <tr>
-                                    <td colSpan={6} className="px-6 py-12 text-center text-gray-400">
-                                        No products found. Click "Add Product" to create one.
-                                    </td>
-                                </tr>
+            {/* Mobile View: Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
+                {products.map((product) => (
+                    <div key={product.id} className="bg-white p-4 rounded-xl border border-gold/20 shadow-sm flex flex-col gap-4">
+                        <div className="aspect-square w-full bg-gray-100 rounded-lg overflow-hidden relative">
+                            {product.images[0] ? (
+                                <img src={product.images[0]} alt="" className="w-full h-full object-cover" />
                             ) : (
-                                products.map((product) => (
-                                    <tr key={product.id} className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="px-6 py-3">
-                                            <div className="h-12 w-12 bg-gray-100 rounded-sm overflow-hidden">
+                                <div className="w-full h-full flex items-center justify-center text-gray-400 text-xs">No Image</div>
+                            )}
+                            {product.featured && (
+                                <span className="absolute top-2 right-2 bg-gold text-black text-[10px] px-2 py-1 font-bold uppercase tracking-wider">
+                                    Featured
+                                </span>
+                            )}
+                        </div>
+                        <div>
+                            <h3 className="font-serif font-medium text-lg text-secondary line-clamp-1">{product.name}</h3>
+                            <p className="text-gold font-medium">₹{product.price.toLocaleString("en-IN")}</p>
+                            <p className="text-xs text-gray-500 mt-1 capitalize">{product.category_id}</p>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2 mt-auto pt-2 border-t border-gray-100">
+                            <Link href={`/products/${product.id}`} className="flex justify-center">
+                                <Button variant="ghost" size="sm" className="h-8 w-full"><Eye className="h-4 w-4 text-gray-400" /></Button>
+                            </Link>
+                            <Link href={`/admin/products/${product.id}/edit`} className="flex justify-center">
+                                <Button variant="ghost" size="sm" className="h-8 w-full"><Pencil className="h-4 w-4 text-blue-500" /></Button>
+                            </Link>
+                            <Button variant="ghost" size="sm" className="h-8 w-full" onClick={() => product.id && handleDelete(product.id, product.images)}>
+                                <Trash2 className="h-4 w-4 text-red-500" />
+                            </Button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            {/* Desktop View: Elegant Table */}
+            <div className="hidden md:block bg-white rounded-xl border border-gold/10 shadow-sm overflow-hidden">
+                <table className="w-full text-left">
+                    <thead className="bg-secondary text-white border-b border-gray-100">
+                        <tr>
+                            <th className="px-6 py-5 font-sans font-light tracking-wider text-sm opacity-80">PRODUCT</th>
+                            <th className="px-6 py-5 font-sans font-light tracking-wider text-sm opacity-80">CODE</th>
+                            <th className="px-6 py-5 font-sans font-light tracking-wider text-sm opacity-80">PRICE</th>
+                            <th className="px-6 py-5 font-sans font-light tracking-wider text-sm opacity-80">CATEGORY</th>
+                            <th className="px-6 py-5 font-sans font-light tracking-wider text-sm opacity-80 text-right">ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                        {products.length === 0 ? (
+                            <tr>
+                                <td colSpan={6} className="px-6 py-16 text-center text-gray-400 font-light">
+                                    No products found in your catalog.
+                                </td>
+                            </tr>
+                        ) : (
+                            products.map((product) => (
+                                <tr key={product.id} className="group hover:bg-gold/5 transition-colors">
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-4">
+                                            <div className="h-16 w-16 bg-gray-100 rounded-md overflow-hidden shadow-sm border border-gray-200">
                                                 {product.images[0] && (
                                                     <img src={product.images[0]} alt="" className="h-full w-full object-cover" />
                                                 )}
                                             </div>
-                                        </td>
-                                        <td className="px-6 py-3 font-medium text-secondary">{product.name}</td>
-                                        <td className="px-6 py-3 text-secondary/70">{product.code}</td>
-                                        <td className="px-6 py-3 text-secondary/70">₹{product.price.toLocaleString("en-IN")}</td>
-                                        <td className="px-6 py-3 text-secondary/70 capitalize">{product.category_id}</td>
-                                        <td className="px-6 py-3 text-right">
-                                            <div className="flex items-center justify-end gap-2">
-                                                <Link href={`/products/${product.id}`} target="_blank">
-                                                    <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-secondary">
-                                                        <Eye className="h-4 w-4" />
-                                                    </Button>
-                                                </Link>
-                                                <Link href={`/admin/products/${product.id}/edit`}>
-                                                    <Button variant="ghost" size="icon" className="h-8 w-8 text-blue-400 hover:text-blue-600 hover:bg-blue-50">
-                                                        <Pencil className="h-4 w-4" />
-                                                    </Button>
-                                                </Link>
-                                                <Button
-                                                    variant="ghost"
-                                                    size="icon"
-                                                    className="h-8 w-8 text-red-400 hover:text-red-600 hover:bg-red-50"
-                                                    onClick={() => product.id && handleDelete(product.id, product.images)}
-                                                >
-                                                    <Trash2 className="h-4 w-4" />
-                                                </Button>
+                                            <div>
+                                                <p className="font-serif font-medium text-secondary text-lg">{product.name}</p>
+                                                {product.featured && <span className="text-[10px] bg-gold/20 text-secondary px-2 py-0.5 rounded-full font-bold">FEATURED</span>}
                                             </div>
-                                        </td>
-                                    </tr>
-                                ))
-                            )}
-                        </tbody>
-                    </table>
-                </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-secondary/60 font-mono text-sm">{product.code}</td>
+                                    <td className="px-6 py-4 text-secondary font-medium">₹{product.price.toLocaleString("en-IN")}</td>
+                                    <td className="px-6 py-4 text-secondary/60 capitalize">
+                                        <span className="bg-gray-100 px-3 py-1 rounded-full text-xs font-medium tracking-wide">{product.category_id}</span>
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <Link href={`/products/${product.id}`} target="_blank">
+                                                <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-secondary hover:text-white transition-colors">
+                                                    <Eye className="h-4 w-4" />
+                                                </Button>
+                                            </Link>
+                                            <Link href={`/admin/products/${product.id}/edit`}>
+                                                <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-blue-500 hover:text-white transition-colors">
+                                                    <Pencil className="h-4 w-4" />
+                                                </Button>
+                                            </Link>
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-9 w-9 hover:bg-red-500 hover:text-white transition-colors"
+                                                onClick={() => product.id && handleDelete(product.id, product.images)}
+                                            >
+                                                <Trash2 className="h-4 w-4" />
+                                            </Button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

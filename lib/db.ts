@@ -15,7 +15,9 @@ import {
     serverTimestamp,
     Timestamp,
     DocumentData,
-    QueryDocumentSnapshot
+    QueryDocumentSnapshot,
+    setDoc,
+    increment
 } from "firebase/firestore";
 // import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage"; // Removed for Cloudinary
 
@@ -276,5 +278,60 @@ export const getDashboardStats = async () => {
     } catch (error) {
         console.error("Error fetching stats:", error);
         return { totalProducts: 0, activeCategories: 0 };
+    }
+};
+
+// --- ANALYTICS TRACKING ---
+
+// Helper to get today's date key (YYYY-MM-DD)
+const getTodayKey = () => new Date().toISOString().split('T')[0];
+
+export const logVisit = async () => {
+    const today = getTodayKey();
+    const statsRef = doc(db, "stats_daily", today);
+
+    try {
+        await setDoc(statsRef, {
+            visits: increment(1),
+            date: today // Ensure date field exists for querying
+        }, { merge: true });
+    } catch (error) {
+        console.error("Error logging visit:", error);
+    }
+};
+
+export const logInteraction = async (type: 'whatsapp' | 'call') => {
+    const today = getTodayKey();
+    const statsRef = doc(db, "stats_daily", today);
+
+    const field = type === 'whatsapp' ? 'whatsapp_clicks' : 'call_clicks';
+
+    try {
+        await setDoc(statsRef, {
+            [field]: increment(1),
+            date: today
+        }, { merge: true });
+    } catch (error) {
+        console.error("Error logging interaction:", error);
+    }
+};
+
+export const getAnalyticsData = async (days = 7) => {
+    try {
+        // Simple query: Get all docs (since we probably don't have many yet)
+        // In production, you'd use where() and limit()
+        const q = query(collection(db, "stats_daily"), limit(30)); // Get last 30 days max
+        const snapshot = await getDocs(q);
+
+        const data = snapshot.docs.map(doc => doc.data());
+
+        // Sort by date manually to be safe
+        data.sort((a, b) => (a.date > b.date ? 1 : -1));
+
+        // Return only requested days
+        return data.slice(-days);
+    } catch (error) {
+        console.error("Error fetching analytics:", error);
+        return [];
     }
 };
