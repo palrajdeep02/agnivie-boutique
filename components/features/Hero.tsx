@@ -37,7 +37,7 @@ export function Hero() {
                                 Shop Collection
                             </Button>
                         </Link>
-                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
+                        <a href="https://wa.me/918961806531" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto">
                             <Button variant="outline" size="lg" className="w-full md:w-auto min-w-[160px] text-white border-white hover:bg-white/10">
                                 DM to Order 📩
                             </Button>

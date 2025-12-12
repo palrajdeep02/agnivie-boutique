@@ -13,7 +13,7 @@ interface ProductDetailProps {
 
 export function ProductDetail({ product }: ProductDetailProps) {
     const whatsappMessage = `Hi, I want to order Product Code: ${product.code}`;
-    const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappLink = `https://wa.me/918961806531?text=${encodeURIComponent(whatsappMessage)}`;
 
     const formattedPrice = new Intl.NumberFormat("en-IN", {
         style: "currency",
@@ -74,7 +74,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                                 <MessageCircle className="h-5 w-5" /> Order on WhatsApp
                             </Button>
                         </a>
-                        <a href="tel:+919876543210" className="block w-full">
+                        <a href="tel:+918961806531" className="block w-full">
                             <Button variant="outline" size="lg" className="w-full gap-2 text-lg h-14 border-secondary text-secondary hover:bg-secondary hover:text-white">
                                 <Phone className="h-5 w-5" /> Call for Enquiry
                             </Button>

@@ -37,14 +37,14 @@ export default function ContactPage() {
                                     <Phone className="h-6 w-6 text-gold mt-1" />
                                     <div>
                                         <h4 className="font-medium text-secondary">Call Us</h4>
-                                        <a href="tel:+919876543210" className="text-secondary/70 hover:text-gold transition-colors">+91 98765 43210</a>
+                                        <a href="tel:+918961806531" className="text-secondary/70 hover:text-gold transition-colors">+91 89618 06531</a>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <Mail className="h-6 w-6 text-gold mt-1" />
                                     <div>
                                         <h4 className="font-medium text-secondary">Email Us</h4>
-                                        <a href="mailto:hello@agnivie.com" className="text-secondary/70 hover:text-gold transition-colors">hello@agnivie.com</a>
+                                        <a href="mailto:soultaker0210@gmail.com" className="text-secondary/70 hover:text-gold transition-colors">soultaker0210@gmail.com</a>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">

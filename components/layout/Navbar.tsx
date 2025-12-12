@@ -50,9 +50,11 @@ export function Navbar() {
 
                     {/* Desktop Actions */}
                     <div className="hidden md:flex items-center gap-4">
-                        <Button variant="outline" size="sm" className="hidden lg:flex">
-                            Call Now
-                        </Button>
+                        <a href="tel:+918961806531">
+                            <Button variant="outline" size="sm" className="hidden lg:flex">
+                                Call Now
+                            </Button>
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -87,12 +89,16 @@ export function Navbar() {
                                 </Link>
                             ))}
                             <div className="pt-4 flex flex-col gap-3">
-                                <Button variant="outline" className="w-full">
-                                    Call Now
-                                </Button>
-                                <Button variant="whatsapp" className="w-full">
-                                    WhatsApp Us
-                                </Button>
+                                <a href="tel:+918961806531" className="w-full">
+                                    <Button variant="outline" className="w-full">
+                                        Call Now
+                                    </Button>
+                                </a>
+                                <a href="https://wa.me/918961806531" target="_blank" rel="noopener noreferrer" className="w-full">
+                                    <Button variant="whatsapp" className="w-full">
+                                        WhatsApp Us
+                                    </Button>
+                                </a>
                             </div>
                         </div>
                     </motion.div>

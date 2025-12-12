@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
                 {/* Quick Actions Overlay (Slide Up) - Structurally outside Link to prevent hydration error */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0 z-20 flex flex-col gap-2 pointer-events-none group-hover:pointer-events-auto">
                     <div className="grid grid-cols-2 gap-2">
-                        <a href="tel:+919876543210" className="w-full">
+                        <a href="tel:+918961806531" className="w-full">
                             <Button variant="primary" size="sm" className="w-full text-xs font-serif bg-white/90 text-black hover:bg-gold hover:text-white border-none backdrop-blur-md">
                                 <Phone className="h-3 w-3 mr-1" /> Call
                             </Button>
