@@ -15,7 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             primary: "relative overflow-hidden bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] bg-[length:200%_auto] text-black shadow-md hover:bg-right transition-all duration-500 hover:shadow-lg hover:scale-[1.02]",
             outline: "bg-transparent border border-gold text-secondary hover:bg-gold/10 hover:border-[#B59020] transition-colors",
             ghost: "bg-transparent text-secondary hover:bg-gold/5 hover:text-gold transition-colors",
-            whatsapp: "bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white hover:shadow-lg hover:scale-[1.02] transition-all",
+            whatsapp: "bg-secondary text-white border border-secondary hover:border-gold hover:text-gold shadow-md hover:shadow-lg transition-all duration-300",
             destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm",
         };
 
