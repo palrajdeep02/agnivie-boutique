@@ -1,10 +1,9 @@
 "use client";
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "@/components/features/AuthProvider"; // We haven't exported this properly from AuthProvider file yet? Wait, yes we did.
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, Layers, LogOut, Loader2 } from "lucide-react";
+import { LayoutDashboard, Package, Layers, LogOut, Loader2, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 // Need to ensure AuthProvider is wrapping the app or at least this section. 
@@ -20,12 +19,18 @@ export default function AdminDashboardLayout({
     const { user, loading, logout } = useAuth();
     const router = useRouter();
     const pathname = usePathname();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         if (!loading && !user) {
             router.push("/admin/login");
         }
     }, [user, loading, router]);
+
+    // Close sidebar on route change (mobile)
+    useEffect(() => {
+        setIsSidebarOpen(false);
+    }, [pathname]);
 
     if (loading) {
         return (
@@ -45,11 +50,30 @@ export default function AdminDashboardLayout({
 
     return (
         <div className="min-h-screen bg-gray-50 flex">
+            {/* Mobile Sidebar Overlay */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-20 md:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             {/* Sidebar */}
-            <aside className="w-64 bg-secondary text-white hidden md:flex flex-col">
-                <div className="h-16 flex items-center px-6 border-b border-white/10">
-                    <span className="font-serif text-xl font-bold text-gold tracking-wider">AGNIVIE</span>
-                    <span className="ml-2 text-xs text-white/50 uppercase tracking-widest">Admin</span>
+            <aside
+                className={`
+                    fixed md:static inset-y-0 left-0 z-30 w-64 bg-secondary text-white transform transition-transform duration-200 ease-in-out md:transform-none flex flex-col
+                    ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+                `}
+            >
+                <div className="h-16 flex items-center justify-between px-6 border-b border-white/10">
+                    <div className="flex items-center">
+                        <span className="font-serif text-xl font-bold text-gold tracking-wider">AGNIVIE</span>
+                        <span className="ml-2 text-xs text-white/50 uppercase tracking-widest">Admin</span>
+                    </div>
+                    {/* Close button for mobile */}
+                    <button onClick={() => setIsSidebarOpen(false)} className="md:hidden text-white/70 hover:text-white">
+                        <X className="h-5 w-5" />
+                    </button>
                 </div>
 
                 <nav className="flex-1 p-4 space-y-2">
@@ -61,8 +85,8 @@ export default function AdminDashboardLayout({
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${isActive
-                                    ? "bg-gold/10 text-gold border-r-2 border-gold"
-                                    : "text-white/70 hover:bg-white/5 hover:text-white"
+                                        ? "bg-gold/10 text-gold border-r-2 border-gold"
+                                        : "text-white/70 hover:bg-white/5 hover:text-white"
                                     }`}
                             >
                                 <Icon className="h-5 w-5" />
@@ -86,10 +110,14 @@ export default function AdminDashboardLayout({
 
             {/* Main Content */}
             <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
-                {/* Mobile Header (TODO if needed) */}
-                <div className="md:hidden h-16 bg-secondary text-white flex items-center px-4 justify-between">
-                    <span className="font-serif font-bold text-gold">AGNIVIE ADMIN</span>
-                    <Button variant="ghost" size="icon" onClick={logout} className="text-white"><LogOut className="h-5 w-5" /></Button>
+                {/* Mobile Header */}
+                <div className="md:hidden h-16 bg-secondary text-white flex items-center px-4 justify-between sticky top-0 z-10 shadow-md">
+                    <div className="flex items-center gap-3">
+                        <Button variant="ghost" size="icon" onClick={() => setIsSidebarOpen(true)} className="text-white -ml-2">
+                            <Menu className="h-6 w-6" />
+                        </Button>
+                        <span className="font-serif font-bold text-gold">AGNIVIE ADMIN</span>
+                    </div>
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-4 md:p-8">
