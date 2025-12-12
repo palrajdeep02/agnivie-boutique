@@ -8,8 +8,9 @@ export function Hero() {
     return (
         <section className="relative h-[80vh] w-full overflow-hidden bg-secondary">
             {/* Background Image Placeholder - In real app, use Next/Image */}
-            className="absolute inset-0 bg-cover bg-center opacity-60"
-            style={{ backgroundImage: 'url("/images/hero-bg.png")' }}
+            <div
+                className="absolute inset-0 bg-cover bg-center opacity-60"
+                style={{ backgroundImage: 'url("/images/hero-bg.png")' }}
             />
             <div className="absolute inset-0 bg-black/30" />
 
