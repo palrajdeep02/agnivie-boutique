@@ -61,8 +61,8 @@ export default function AdminDashboardLayout({
             {/* Sidebar */}
             <aside
                 className={`
-                    fixed md:static inset-y-0 left-0 z-30 w-64 bg-secondary text-white transform transition-transform duration-200 ease-in-out md:transform-none flex flex-col
-                    ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+                    fixed md:static inset-y-0 left-0 z-30 w-64 bg-secondary text-white transform transition-transform duration-200 ease-in-out flex flex-col
+                    ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
                 `}
             >
                 <div className="h-16 flex items-center justify-between px-6 border-b border-white/10">
@@ -85,8 +85,8 @@ export default function AdminDashboardLayout({
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${isActive
-                                        ? "bg-gold/10 text-gold border-r-2 border-gold"
-                                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                                    ? "bg-gold/10 text-gold border-r-2 border-gold"
+                                    : "text-white/70 hover:bg-white/5 hover:text-white"
                                     }`}
                             >
                                 <Icon className="h-5 w-5" />
