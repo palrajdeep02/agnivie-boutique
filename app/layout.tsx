@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AuthProvider } from "@/components/features/AuthProvider";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -31,11 +32,13 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${playfair.variable} antialiased bg-cream text-black flex flex-col min-h-screen`}
       >
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

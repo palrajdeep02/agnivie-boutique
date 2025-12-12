@@ -48,7 +48,7 @@ export default function AdminDashboardLayout({
             {/* Sidebar */}
             <aside className="w-64 bg-secondary text-white hidden md:flex flex-col">
                 <div className="h-16 flex items-center px-6 border-b border-white/10">
-                    <span className="font-serif text-xl font-bold text-gold tracking-wider">AURUM</span>
+                    <span className="font-serif text-xl font-bold text-gold tracking-wider">AGNIVIE</span>
                     <span className="ml-2 text-xs text-white/50 uppercase tracking-widest">Admin</span>
                 </div>
 
@@ -61,8 +61,8 @@ export default function AdminDashboardLayout({
                                 key={item.href}
                                 href={item.href}
                                 className={`flex items-center gap-3 px-4 py-3 text-sm font-medium transition-colors ${isActive
-                                        ? "bg-gold/10 text-gold border-r-2 border-gold"
-                                        : "text-white/70 hover:bg-white/5 hover:text-white"
+                                    ? "bg-gold/10 text-gold border-r-2 border-gold"
+                                    : "text-white/70 hover:bg-white/5 hover:text-white"
                                     }`}
                             >
                                 <Icon className="h-5 w-5" />
@@ -88,7 +88,7 @@ export default function AdminDashboardLayout({
             <main className="flex-1 flex flex-col min-w-0 overflow-hidden">
                 {/* Mobile Header (TODO if needed) */}
                 <div className="md:hidden h-16 bg-secondary text-white flex items-center px-4 justify-between">
-                    <span className="font-serif font-bold text-gold">AURUM ADMIN</span>
+                    <span className="font-serif font-bold text-gold">AGNIVIE ADMIN</span>
                     <Button variant="ghost" size="icon" onClick={logout} className="text-white"><LogOut className="h-5 w-5" /></Button>
                 </div>
 

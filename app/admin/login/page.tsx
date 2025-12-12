@@ -35,7 +35,7 @@ export default function AdminLogin() {
         <div className="min-h-screen flex items-center justify-center bg-cream px-4">
             <div className="w-full max-w-md bg-white p-8 border border-gray-100 shadow-sm">
                 <div className="text-center mb-8">
-                    <h1 className="font-serif text-3xl font-bold text-secondary text-gold">AURUM</h1>
+                    <h1 className="font-serif text-3xl font-bold text-secondary text-gold">AGNIVIE</h1>
                     <p className="text-secondary/60 text-sm mt-2 font-sans tracking-wide">
                         ADMINISTRATION PANEL
                     </p>
